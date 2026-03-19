@@ -3,3 +3,22 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    text-align: center;
+}
+
+::placeholder {
+    text-align: center;
+    position: relative;
+}
+
+button {
+    background-color: rgb(173, 230, 173);
+    text-align: center;
+    position: absolute; top: 40%; left: 47%;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}
