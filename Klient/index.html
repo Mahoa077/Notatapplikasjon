@@ -14,12 +14,17 @@
 
     <div class="container">
         <h2>Skriv inn tittel til notatet og innholdet</h2>
-        <input style=position:absolute;top:20%;left:30%;width:40%; type="text" placeholder="Tittel">
-        
-        <input style=position:absolute;top:30%;left:30%;width:40%; type="text" placeholder="Innhold">
 
-        <button id="lagreNotat" onclick="lagreinfo">Lagre notatet</button>
+        <button id="lagreNotat" onclick="lagreinfo()">Lagre notatet</button>
     </div>
 
+   <div>
+        <form id="form" onsubmit="return false; ">
+            <input id="input1" type="text" placeholder="Tittel">
+            
+            <input id="input2" type="text" placeholder="Innhold">
+        </form>
+    </div>
+    <script src="script.js" defer></script>
 </body>
 </html>

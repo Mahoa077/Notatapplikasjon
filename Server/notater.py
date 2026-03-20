@@ -1,5 +1,9 @@
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 import sqlite3, datetime
 from datetime import date
+
+app = FastAPI(title="LOTR Notater")
 
 databasekobling = sqlite3.connect("notater.db")
 c = databasekobling.cursor()
@@ -31,7 +35,7 @@ def rediger_notat():
     inn = ""
     tittel = resultat[1]
     innhold = resultat[2]
-    while inn i= "q" :
+    while inn != "q" :
         print(f"""
               Hva vil du endre?
               1. Tittel: {tittel}
@@ -65,5 +69,15 @@ def rediger_notat():
 
     databasekobling.commit
     databasekobling.close
+
+    class Notater(BaseModel):
+        tittel: str
+        innhold: str
+
+    @app.post("/notater" ,response_model=Notater)
+    def notat():
+        c.execute("INSERT INTO Invetar (tittel, innhold) VALUES (?,?)", (tittel, innhold))
+        databasekobling.commit()
+
 
     
