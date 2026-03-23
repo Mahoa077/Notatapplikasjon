@@ -5,7 +5,7 @@ from datetime import date
 
 app = FastAPI(title="LOTR Notater")
 
-databasekobling = sqlite3.connect("notater.db")
+databasekobling = sqlite3.connect("database.db",check_same_thread=False)
 c = databasekobling.cursor()
 c.execute("PRAGMA foreign_keys = ON")
 
@@ -70,14 +70,16 @@ def rediger_notat():
     databasekobling.commit
     databasekobling.close
 
-    class Notater(BaseModel):
-        tittel: str
-        innhold: str
+class Notater(BaseModel):
+    tittel: str
+    innhold: str
 
-    @app.post("/notater" ,response_model=Notater)
-    def notat():
-        c.execute("INSERT INTO Invetar (tittel, innhold) VALUES (?,?)", (tittel, innhold))
-        databasekobling.commit()
+@app.post("/notater")
+def notat(data:Notater):
+    print(f"\n\n\n\n\n\nHEI\n\n\n\n\n\n")
+    print(data.tittel, data.innhold)
+    c.execute("INSERT INTO Inventar (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
+    databasekobling.commit()
 
 
     
