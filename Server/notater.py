@@ -5,9 +5,15 @@ from datetime import date
 
 app = FastAPI(title="LOTR Notater")
 
-databasekobling = sqlite3.connect("database.db",check_same_thread=False)
-c = databasekobling.cursor()
-c.execute("PRAGMA foreign_keys = ON")
+def get_connection():
+    return sqlite3.connect("database.db")
+
+with get_connection() as conn:
+    cur = conn.cursor()
+
+#databasekobling = sqlite3.connect("database.db",check_same_thread=False)
+#c = databasekobling.cursor()
+#c.execute("PRAGMA foreign_keys = ON")
 
 c.execute("""
            CREATE TABLE IF NOT EXISTS Inventar(
@@ -67,19 +73,31 @@ def rediger_notat():
     c.execute("SELECT * FROM Invetar")
     print(c.fetchall())
 
-    databasekobling.commit
-    databasekobling.close
+    get_connection.commit
+    get_connection.close
 
 class Notater(BaseModel):
     tittel: str
     innhold: str
+
+class Todo(BaseModel):
+    tittel: str
+    oppgaver: list [text:str, done:bool]
+
+#with get_connection() as conn:
+
+@app.get("/notat")
+def hent_notat(notat_id: int):
+    
+     
 
 @app.post("/notater")
 def notat(data:Notater):
     print(f"\n\n\n\n\n\nHEI\n\n\n\n\n\n")
     print(data.tittel, data.innhold)
     c.execute("INSERT INTO Inventar (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
-    databasekobling.commit()
+    get_connection.commit()
 
 
-    
+# def get note
+# def get note(note_id) 
