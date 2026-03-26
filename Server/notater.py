@@ -110,7 +110,7 @@ def hent_notat(notat_id: int):
         cur.execute("SELECT id, titel, innhold FROM notater WHERE id = ?", (notat_id))
         row = cur.fetchone()
         if not row:
-            raise HTTPExceptio(status_code=404, detail ="Not found")
+            raise HTTPException(status_code=404, detail ="Not found")
         return {"id": row[0], "titel": row[1], "innhold": row[2]}
 
 

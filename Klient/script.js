@@ -15,5 +15,5 @@ fetch("http://127.0.0.1:5500/Klient/index.html", {
         innhold: "Innholdet her",
         completed: false
     }),
-});x
+});
 
