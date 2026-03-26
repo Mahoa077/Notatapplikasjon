@@ -4,13 +4,17 @@ function lagreinfo() {
     console.log("log")
     console.log(input1)
     console.log(input2)
-    alert(input1, input2);
+    alert(input1 +" og "+ input2);
+    payload = JSON.stringify({
+            tittel: input1,
+            innhold: input2
+        })
+    console.log("payload" + payload)
     fetch("http://127.0.0.1:8000/notater", {
         method: "POST",
-        body: JSON.stringify({
-            title: "Tittel her",
-            innhold: "Innhold her"
-        })
+        body: payload,
+        headers: {'Content-Type': 'application/json'},
+        
     })
 }
 
@@ -24,3 +28,28 @@ function lagreinfo() {
 //     }),
 // });
 
+//async function sendData() {
+//    try {
+//      const response = await fetch('http://127.0.0.1:8000/notater', {
+//        method: 'POST',
+//        headers: {
+//          'Content-Type': 'application/json'
+//        },
+//        body: JSON.stringify({
+//          tittel: "Tittel her",
+//          innhold: "Innhold her"
+//        })
+//      });
+//   
+//      if (!response.ok) {
+//        throw new Error(response.message);
+//      }
+//   
+//      const data = await response.json();
+//      console.log('Svar fra server:', data);
+//   
+//    } catch (error) {
+//      console.error('Feil:', error);
+//    }
+//  }
+   

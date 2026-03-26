@@ -81,9 +81,6 @@ def rediger_notat():
     get_connection.commit
     get_connection.close
 
-class Notater(BaseModel):
-    tittel: str
-    innhold: str
 
 #class Todo(BaseModel):
 #    tittel: str
@@ -97,9 +94,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class Notater(BaseModel):
+    tittel: str
+    innhold: str
+
+
 @app.post("/notater")
-def notat(data:Notater):
-    print(f"\n\n\n\n\n\nHEI\n\n\n\n\n\n")
+def notat(data: Notater):
+    print('POST REQUESTTT')
+    print(data)
     print(data.tittel, data.innhold)
     with get_connection() as conn:
         cur = conn.cursor()
