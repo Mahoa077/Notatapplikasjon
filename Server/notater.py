@@ -109,7 +109,7 @@ def notat(data: Notater):
         cur.execute("INSERT INTO Inventar (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
         conn.commit()
 
-@app.get("/notat")
+@app.get("/notater")
 def hent_notater():
     with get_connection() as conn:
         cur = conn.cursor()

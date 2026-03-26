@@ -14,7 +14,15 @@ function lagreinfo() {
         method: "POST",
         body: payload,
         headers: {'Content-Type': 'application/json'},
-        
+
+    })
+}
+
+function hentinfo() {
+    fetch("http://127.0.0.1:8000/notater", {
+        method: "GET",
+        headers: {'Content-Type': 'application/json'}
+
     })
 }
 
