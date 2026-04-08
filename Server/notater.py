@@ -8,7 +8,7 @@ origins = [
     "http://127.0.0.1:5500"
 ]
 
-app = FastAPI(title="LOTR Notater")
+app = FastAPI(title="Notater")
 
 def get_connection():
     return sqlite3.connect("database.db")
@@ -27,7 +27,15 @@ with get_connection() as conn:
                 innhold TEXT NOT NULL
             )
             """)
-
+            
+    cur.execute("""
+            CREATE TABLE IF NOT EXISTS TodoLister(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                tittel TEXT NOT NULL,
+                innhold TEXT NOT NULL
+                )
+                """)
+    
 #def legg_til_notat():
 #    tittel = input("Skriv inn tittelen på notatet: ")
 #    innhold = input("Skriv inn teksten som skal være inne i notatet, altså innholdet: ")
@@ -37,6 +45,11 @@ with get_connection() as conn:
 def slett_notat():
     notat_id = input("Skriv inn id-en til notatet som skal bli slettet: ")
     cur.execute("DELETE FROM Inventar WHERE id = ?", (notat_id))
+    get_connection.commit()
+
+def slett_todo():
+    todo_id = input("Skriv inn id-en til todoen som skal bli slettet: ")
+    cur.execute("DELETE FROM TodoLister WHERE id = ?", (todo_id))
     get_connection.commit()
 
 def rediger_notat():
@@ -81,6 +94,44 @@ def rediger_notat():
     get_connection.commit
     get_connection.close
 
+def rediger_todo():
+    todo_id = input("Skriv inn id-en til todoen du vil endre på: ")
+    cur.execute("SELECT * FROM TodoLister WHERE id = ?", (todo_id))
+    resultat = cur.fetchone()
+    inn = ""
+    tittel = resultat[1]
+    innhold = resultat[2]
+    while inn != "q":
+        print(f"""
+            Hva vil du endre?
+            1. Tittel: {tittel}
+            2. Innhold: {innhold}
+              """)
+        inn = input(": ")
+        if inn == "1" :
+            tittel = input("Skriv inn ny tittel: ")
+        elif inn == "2":
+            innhold = input("Skrin inn nytt innhold: ")
+    cur.execute("UPDATE TodoLister SET tittel = ?, innhold = ? WHERE id =?", (tittel, innhold, todo_id))
+
+    inn = ""
+    while inn != "q":
+        print("""
+            MENY
+            1. Legg til todo
+            2. Slett todo
+            3. Rediger todo
+              """)
+        inn = input(":")
+        match inn:
+            case "1":
+                legg_til_todo()
+            case "2":
+                slett_todo()
+            case "3":
+                rediger_todo()
+
+
 
 #class Todo(BaseModel):
 #    tittel: str
@@ -97,6 +148,11 @@ app.add_middleware(
 class Notater(BaseModel):
     tittel: str
     innhold: str
+
+class Todo(BaseModel):
+    tittel: str
+    innhold: list[list[str,bool]]
+
 
 
 @app.post("/notater")
@@ -129,6 +185,7 @@ def hent_notat(notat_id: int):
         if not row:
             raise HTTPException(status_code=404, detail ="Not found")
         return {"id": row[0], "titel": row[1], "innhold": row[2]}
+
 
 
 # def get note
