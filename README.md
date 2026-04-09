@@ -8,7 +8,7 @@ Jeg har valgt å løse denne oppgaven via å bruke html, css, javascript og pyth
 # Hvordan du setter igang klienten:
 
 Last ned live server extension til vscode, 
-kjør index.html med live server
+kjør index.html med live server via uvicron 
 
 For å starte må klienten trykke på go live nederst i høyre gjørne, som da sender dem til nettsiden der de kan skrive inn notater. 
 

@@ -184,7 +184,7 @@ def todo(data: Todo):
 def hent_notater():
     with get_connection() as conn:
         cur = conn.cursor()
-        cur.execute("SELECT id, title, innhold FROM Inventar") 
+        cur.execute("SELECT id, tittel, innhold FROM Inventar") 
         rows = cur.fetchall()
         return [
             {"id": r[0], "titel": r[1], "innhold": r[2]}

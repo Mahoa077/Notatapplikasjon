@@ -41,9 +41,16 @@ function lagretodoinfo() {
 function hentinfo() {
     fetch("http://127.0.0.1:8000/notater", {
         method: "GET",
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json'}})
+        .then(Response => Response.json())
+        .then(data => {
+            displayInfo(data);}
+        )
+    
+}
 
-    })
+function displayInfo(data) {
+    console.log(data)
 }
 
 // fetch("http://127.0.0.1:5500/Klient/index.html", {

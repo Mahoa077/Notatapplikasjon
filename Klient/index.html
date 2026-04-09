@@ -16,6 +16,16 @@
         <h2>Skriv inn tittel til notatet og innholdet</h2>
         <button id="lagreNotat" onclick="lagreinfo()">Lagre notatet</button>
     </div>
+
+    <div id="info-container">Laster inn...</div>
+    <script>
+        function displayinfo(data) {
+            const container = document.getElementById('info-container');
+            container.innerText = $;{data}
+        }
+    
+    </script>
+
     <div class="button2">
         <button id="hentNotater" onclick="hentinfo()">Hent notater</button>
     </div>
@@ -35,6 +45,8 @@
             <input id="input4" type="text" placeholder="Todoinnhold">
         </form>
     </div>
+
+
     <script src="script.js" defer></script>
 </body>
 </html>
