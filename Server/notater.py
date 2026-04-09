@@ -130,6 +130,11 @@ def rediger_todo():
                 slett_todo()
             case "3":
                 rediger_todo()
+    cur.execute("SELECT * FROM TodoLister")
+    print(cur.fetchall())
+
+    get_connection.comit
+    get_connection.close
 
 
 
@@ -164,6 +169,12 @@ def notat(data: Notater):
         cur = conn.cursor()
         cur.execute("INSERT INTO Inventar (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
         conn.commit()
+
+@app.post("/todoer")
+def todo(data: Todo):
+    print('Post REQUESTTT')
+    print(data)
+    print(data.tittel, data.innhold)
 
 @app.get("/notater")
 def hent_notater():
