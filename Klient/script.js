@@ -18,6 +18,26 @@ function lagreinfo() {
     })
 }
 
+function lagretodoinfo() {
+    var input1 = document.getElementById("input3").value;
+    var input2 = document.getElementById("input4").value;
+    console.log("log")
+    console.log(input3)
+    console.log(input4)
+    alert(input3 +" og "+ input4);
+    payload = JSON.stringify({
+            todotittel: input3,
+            todoinnhold: input4
+        })
+    console.log("payload" + payload)
+    fetch("http://127.0.0.1:8000/notater", {
+        method: "POST",
+        body: payload,
+        headers: {'Content-Type': 'application/json'},
+
+    })
+}
+
 function hentinfo() {
     fetch("http://127.0.0.1:8000/notater", {
         method: "GET",
