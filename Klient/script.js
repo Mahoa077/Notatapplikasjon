@@ -51,7 +51,12 @@ function hentinfo() {
 
 function displayInfo(data) {
     console.log(data)
+    let object = JSON.parse(JSON.stringify(data[0], null, 2))
+    document.getElementById("output").textContent = object.innhold
 }
+
+// for (lengden av data):
+//  printer ut data[i] tittel innhold til html
 
 // fetch("http://127.0.0.1:5500/Klient/index.html", {
 //     method: "POST",
