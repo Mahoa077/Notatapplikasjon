@@ -14,3 +14,6 @@ For å starte må klienten trykke på go live nederst i høyre gjørne, som da s
 
 Jeg bruker fastapi for å kunne importere HTTPExecute , for da å håndtere feilsituasjoner i nettsiden. Da kan jeg få mer detaljert beskrevet feil, som da gjør det enklere å feilsøke og rette opp i feilene. Det gjør det også mye enklere for klienten å se feilene som kan oppstå. 
 
+# Hvordan sette opp backenden
+
+For å starte backend må du ha lastet ned Uvicorn 

@@ -1,30 +1,100 @@
+/* Reset + base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+/* Headings */
 h1 {
-    color: black;
+    color: #222;
+    margin-bottom: 10px;
     text-align: center;
 }
 
 h2 {
+    margin-bottom: 20px;
     text-align: center;
+    color: #555;
 }
 
+/* Inputs */
+input, textarea {
+    width: 250px;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus, textarea:focus {
+    border-color: rgb(173, 230, 173);
+    box-shadow: 0 0 5px rgba(173, 230, 173, 0.7);
+}
+
+/* Placeholder */
 ::placeholder {
     text-align: center;
-    position: relative;
+    color: #999;
 }
 
+/* Buttons */
 button {
     background-color: rgb(173, 230, 173);
-    text-align: center;
-    position: absolute; top: 40%; left: 47%;
-}
-
-.button2{
-    background-color: rgb(173, 230, 173);
-    text-align: center;
-    position: absolute; top: 50%; left: 48%;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: black;
+    background-color: #222;
     color: white;
+}
+
+/* Optional secondary button */
+.button2 {
+    background-color: #bde5bd;
+}
+
+/* Output area */
+#output {
+    margin-top: 30px;
+    width: 300px;
+}
+
+#output h1 {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+#output p {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Container (optional if you wrap your form) */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }

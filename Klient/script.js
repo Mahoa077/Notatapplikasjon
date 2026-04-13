@@ -50,9 +50,28 @@ function hentinfo() {
 }
 
 function displayInfo(data) {
-    console.log(data)
-    let object = JSON.parse(JSON.stringify(data[0], null, 2))
-    document.getElementById("output").textContent = object.innhold
+    //let object = JSON.parse(JSON.stringify(data[0], null, 2))
+    let output = document.getElementById("output")
+    //let tittel_out= document.createElement("h1").textContent = object.tittel
+
+    for (let object of data) {
+        let tittel = document.createElement("h1")
+        tittel.textContent = object.tittel
+        output.appendChild(tittel)
+        let innhold = document.createElement("p")
+        innhold.textContent = object.innhold
+        output.appendChild(innhold)
+
+    }
+
+    //for (let i = 0; i < data.length; i++) {
+        //let object = data[i]
+
+        //let tittel = document.createElement("h1")
+        //tittel.textContent = object.tittel
+
+        //output.appendChild(tittel)
+    //}
 }
 
 // for (lengden av data):

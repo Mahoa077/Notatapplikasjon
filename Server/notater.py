@@ -187,7 +187,7 @@ def hent_notater():
         cur.execute("SELECT id, tittel, innhold FROM Inventar") 
         rows = cur.fetchall()
         return [
-            {"id": r[0], "titel": r[1], "innhold": r[2]}
+            {"id": r[0], "tittel": r[1], "innhold": r[2]}
             for r in rows
         ]
 
@@ -206,11 +206,11 @@ def hent_todolister():
 def hent_notat(notat_id: int):
     with get_connection() as conn:
         cur = conn.cursor()
-        cur.execute("SELECT id, titel, innhold FROM Inventar WHERE id = ?", (notat_id))
+        cur.execute("SELECT id, tittel, innhold FROM Inventar WHERE id = ?", (notat_id))
         row = cur.fetchone()
         if not row:
             raise HTTPException(status_code=404, detail ="Not found")
-        return {"id": row[0], "titel": row[1], "innhold": row[2]}
+        return {"id": row[0], "tittel": row[1], "innhold": row[2]}
 
 @app.get("/todo/{todo_id}")
 def hent_todolister(todo_id: int):
