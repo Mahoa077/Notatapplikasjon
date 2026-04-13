@@ -19,8 +19,8 @@ function lagreinfo() {
 }
 
 function lagretodoinfo() {
-    var input1 = document.getElementById("input3").value;
-    var input2 = document.getElementById("input4").value;
+    var input3 = document.getElementById("input3").value;
+    var input4 = document.getElementById("input4").value;
     console.log("log")
     console.log(input3)
     console.log(input4)
@@ -30,7 +30,7 @@ function lagretodoinfo() {
             todoinnhold: input4
         })
     console.log("payload" + payload)
-    fetch("http://127.0.0.1:8000/notater", {
+    fetch("http://127.0.0.1:8000/todo", {
         method: "POST",
         body: payload,
         headers: {'Content-Type': 'application/json'},
@@ -40,6 +40,17 @@ function lagretodoinfo() {
 
 function hentinfo() {
     fetch("http://127.0.0.1:8000/notater", {
+        method: "GET",
+        headers: {'Content-Type': 'application/json'}})
+        .then(Response => Response.json())
+        .then(data => {
+            displayInfo(data);}
+        )
+    
+}
+
+function henttodo() {
+    fetch("http://127.0.0.1:8000/todoer", {
         method: "GET",
         headers: {'Content-Type': 'application/json'}})
         .then(Response => Response.json())

@@ -21,6 +21,7 @@ Jeg bruker fastapi for å kunne importere HTTPExecute , for da å håndtere feil
 Åpne terminalen
 For å starte backend må du ha lastet ned Uvicorn 
 Skriv inn open /Users/mahoa077/Documents/GitHub/Notatapplikasjon
-For å komme deg inn i dokumentet mitt på github 
+For å komme deg inn i dokumentet mitt på github
+
 
 Pip freeze 

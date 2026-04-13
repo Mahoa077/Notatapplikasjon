@@ -99,20 +99,20 @@ def rediger_todo():
     cur.execute("SELECT * FROM TodoLister WHERE id = ?", (todo_id))
     resultat = cur.fetchone()
     inn = ""
-    tittel = resultat[1]
-    innhold = resultat[2]
+    todotittel = resultat[1]
+    todoinnhold = resultat[2]
     while inn != "q":
         print(f"""
             Hva vil du endre?
-            1. Tittel: {tittel}
-            2. Innhold: {innhold}
+            1. Tittel: {todotittel}
+            2. Innhold: {todoinnhold}
               """)
         inn = input(": ")
         if inn == "1" :
-            tittel = input("Skriv inn ny tittel: ")
+            todotittel = input("Skriv inn ny tittel: ")
         elif inn == "2":
-            innhold = input("Skrin inn nytt innhold: ")
-    cur.execute("UPDATE TodoLister SET tittel = ?, innhold = ? WHERE id =?", (tittel, innhold, todo_id))
+            todoinnhold = input("Skrin inn nytt innhold: ")
+    cur.execute("UPDATE TodoLister SET tittel = ?, innhold = ? WHERE id =?", (todotittel, todoinnhold, todo_id))
 
     inn = ""
     while inn != "q":
@@ -155,8 +155,9 @@ class Notater(BaseModel):
     innhold: str
 
 class Todo(BaseModel):
-    tittel: str
-    innhold: list[list[str,bool]]
+    todotittel: str
+    todoinnhold: str
+    #innhold: list[list[str,bool]]
 
 
 
@@ -170,14 +171,14 @@ def notat(data: Notater):
         cur.execute("INSERT INTO Notater (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
         conn.commit()
 
-@app.post("/todoer")
+@app.post("/todo")
 def todo(data: Todo):
     print('Post REQUESTTT')
     print(data)
-    print(data.tittel, data.innhold)
+    print(data.todotittel, data.todoinnhold)
     with get_connection() as conn:
         cur = conn.cursor()
-        cur.execute("INSERT INTO TodoLister (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
+        cur.execute("INSERT INTO TodoLister (tittel, innhold) VALUES (?,?)", (data.todotittel, data.todoinnhold))
         conn.commit()
 
 @app.get("/notater")
