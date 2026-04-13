@@ -21,7 +21,7 @@ with get_connection() as conn:
     #c.execute("PRAGMA foreign_keys = ON")
 
     cur.execute("""
-            CREATE TABLE IF NOT EXISTS Inventar(
+            CREATE TABLE IF NOT EXISTS Notater(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 tittel TEXT NOT NULL,
                 innhold TEXT NOT NULL
@@ -44,7 +44,7 @@ with get_connection() as conn:
 
 def slett_notat():
     notat_id = input("Skriv inn id-en til notatet som skal bli slettet: ")
-    cur.execute("DELETE FROM Inventar WHERE id = ?", (notat_id))
+    cur.execute("DELETE FROM Notater WHERE id = ?", (notat_id))
     get_connection.commit()
 
 def slett_todo():
@@ -54,7 +54,7 @@ def slett_todo():
 
 def rediger_notat():
     notat_id = input("Skriv inn id-en til notatet som du vil endre på: ")
-    cur.execute("SELECT * FROM Invetar WHERE id = ?", (notat_id))
+    cur.execute("SELECT * FROM Notater WHERE id = ?", (notat_id))
     resultat = cur.fetchone()
     inn = ""
     tittel = resultat[1]
@@ -70,7 +70,7 @@ def rediger_notat():
             tittel = input("Skriv inn ny tittel: ")
         elif inn == "2":
             innhold = input("Skriv inn nytt innhold: ")
-    cur.execute("UPDATE Inventar SET tittel = ?, innhold = ? WHERE id =?", (tittel, innhold, notat_id))
+    cur.execute("UPDATE Notater SET tittel = ?, innhold = ? WHERE id =?", (tittel, innhold, notat_id))
 
     inn = ""
     while inn != "q":
@@ -88,7 +88,7 @@ def rediger_notat():
                 slett_notat()
             case "3":
                 rediger_notat()
-    cur.execute("SELECT * FROM Invetar")
+    cur.execute("SELECT * FROM Notater")
     print(cur.fetchall())
 
     get_connection.commit
@@ -167,7 +167,7 @@ def notat(data: Notater):
     print(data.tittel, data.innhold)
     with get_connection() as conn:
         cur = conn.cursor()
-        cur.execute("INSERT INTO Inventar (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
+        cur.execute("INSERT INTO Notater (tittel, innhold) VALUES (?,?)", (data.tittel, data.innhold))
         conn.commit()
 
 @app.post("/todoer")
@@ -184,7 +184,7 @@ def todo(data: Todo):
 def hent_notater():
     with get_connection() as conn:
         cur = conn.cursor()
-        cur.execute("SELECT id, tittel, innhold FROM Inventar") 
+        cur.execute("SELECT id, tittel, innhold FROM Notater") 
         rows = cur.fetchall()
         return [
             {"id": r[0], "tittel": r[1], "innhold": r[2]}
@@ -206,7 +206,7 @@ def hent_todolister():
 def hent_notat(notat_id: int):
     with get_connection() as conn:
         cur = conn.cursor()
-        cur.execute("SELECT id, tittel, innhold FROM Inventar WHERE id = ?", (notat_id))
+        cur.execute("SELECT id, tittel, innhold FROM Notater WHERE id = ?", (notat_id))
         row = cur.fetchone()
         if not row:
             raise HTTPException(status_code=404, detail ="Not found")

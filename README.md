@@ -5,6 +5,8 @@ http://127.0.0.1:8000/docs#/default/notat_notater_post
 
 Jeg har valgt å løse denne oppgaven via å bruke html, css, javascript og python som kodespråk. Jeg bruke disse kode språkene på grunn av at jeg kan de ganske godt. Jeg har gjort det slik at brukeren bruker en nettside for å skrive inn notater og hente de. Informasjonen de skrev inn går så inn i javascriptet, også videre til python filen som da sender det videre inn i databasen. 
 
+Jeg byttet database navnet Inventar til notater, så nå bruker vi databasen Notater i stedet for den som heter Inventar. 
+
 # Hvordan du setter igang klienten:
 
 Last ned live server extension til vscode, 
@@ -21,3 +23,4 @@ For å starte backend må du ha lastet ned Uvicorn
 Skriv inn open /Users/mahoa077/Documents/GitHub/Notatapplikasjon
 For å komme deg inn i dokumentet mitt på github 
 
+Pip freeze 
