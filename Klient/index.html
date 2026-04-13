@@ -12,18 +12,9 @@
         <h1>Todo-notater</h1>
     </div>
 
-    <div class="container">
-        <h2>Skriv inn tittel til notatet og innholdet</h2>
-        <button id="lagreNotat" onclick="lagreinfo()">Lagre notatet</button>
-    </div>
-
-    <div id="info-container">Laster inn...</div>
+    <h2>Skriv inn tittel til notatet og innholdet</h2>
    
     <div id="output"></div>
-
-    <div class="button2">
-        <button id="hentNotater" onclick="hentinfo()">Hent notater</button>
-    </div>
 
    <div>
         <form id="form" onsubmit="return false; ">
@@ -41,6 +32,13 @@
         </form>
     </div>
 
+     <div class="container">
+        <button id="lagreNotat" onclick="lagreinfo()">Lagre notatet</button>
+    </div>
+
+    <div class="button2">
+        <button id="hentNotater" onclick="hentinfo()">Hent notater</button>
+    </div>
 
     <script src="script.js" defer></script>
 </body>

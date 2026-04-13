@@ -1,4 +1,4 @@
-Tekst hei
+Brukerinstrukser for applikasjonen 
 
 Denne lenken bruke jeg for å teste:
 http://127.0.0.1:8000/docs#/default/notat_notater_post 
@@ -16,4 +16,8 @@ Jeg bruker fastapi for å kunne importere HTTPExecute , for da å håndtere feil
 
 # Hvordan sette opp backenden
 
+Åpne terminalen
 For å starte backend må du ha lastet ned Uvicorn 
+Skriv inn open /Users/mahoa077/Documents/GitHub/Notatapplikasjon
+For å komme deg inn i dokumentet mitt på github 
+
